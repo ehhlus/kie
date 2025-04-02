@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s ease;
+        }
+        
+        /* Stage 1: Purple Theme */
+        .stage-1 {
+            background-color: #8a2be2;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stage-1 h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .message {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+            font-size: 1.2rem;
+        }
+        
+        .input-section {
+            margin: 20px 0;
+        }
+        
+        input {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 30px;
+            margin-right: 10px;
+            outline: none;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: white;
+            color: #8a2be2;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Stage 2: Cat Theme - Updated to be cuter and less preppy */
+        .stage-2 {
+            background-color: #343a40;
+            color: #f8f9fa;
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            background-image: url('/api/placeholder/400/400');
+            background-repeat: repeat;
+            background-size: 100px;
+            background-blend-mode: overlay;
+        }
+        
+        .stage-2 h1 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .cat-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .cat {
+            font-size: 100px;
+            animation: wiggle 3s infinite;
+            text-shadow: 0 0 10px #fff;
+        }
+        
+        .paw-prints {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        
+        .paw {
+            font-size: 24px;
+            animation: fade 3s infinite;
+            animation-delay: calc(var(--i) * 0.5s);
+        }
+        
+        @keyframes wiggle {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-10deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        @keyframes fade {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
+        /* Stage 3: Space Theme */
+        .stage-3 {
+            background-color: #000033;
+            color: white;
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+        
+        .code-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: monospace;
+            text-align: left;
+            margin: 20px auto;
+            max-width: 500px;
+        }
+        
+        /* Stage 4: Music Theme (EDM) - Code aspect removed */
+        .stage-4 {
+            background: linear-gradient(135deg, #ff00cc, #3333ff);
+            color: white;
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .music-staff {
+            margin: 30px 0;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+        }
+        
+        .staff-line {
+            height: 2px;
+            width: 300px;
+            background-color: white;
+            margin: 10px 0;
+        }
+        
+        .music-note {
+            position: absolute;
+            font-size: 24px;
+            color: white;
+        }
+        
+        .visualizer {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100px;
+            width: 300px;
+            margin: 20px auto;
+        }
+        
+        .bar {
+            width: 8px;
+            background: white;
+            margin: 0 2px;
+            border-radius: 5px 5px 0 0;
+            animation: equalize 1s infinite;
+            animation-delay: calc(var(--i) * 0.1s);
+        }
+        
+        @keyframes equalize {
+            0% { height: 10px; }
+            50% { height: var(--h); }
+            100% { height: 10px; }
+        }
+        
+        .hidden-link {
+            display: none;
+            margin: 20px 0;
+            padding: 15px 30px;
+            background-color: #8a2be2;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            animation: glow 1.5s infinite alternate;
+            position: relative;
+            z-index: 10;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #8a2be2, 0 0 10px #8a2be2;
+            }
+            to {
+                box-shadow: 0 0 10px #8a2be2, 0 0 20px #8a2be2, 0 0 30px #8a2be2;
+            }
+        }
+        
+        /* Final Stage */
+        .final-stage {
+            background-color: #ff69b4;
+            color: white;
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .heart {
+            color: red;
+            font-size: 24px;
+            animation: heartbeat 1s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .gift-link {
+            display: none;
+            margin: 20px 0;
+            animation: popIn 0.5s forwards;
+            transform: scale(0);
+            opacity: 0;
+        }
+        
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .continue-button {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1s forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .note {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Stage 1: Purple Theme -->
+    <div id="stage1" class="stage-1">
+        <h1>Happy Birthday Kie <span class="heart">♥</span></h1>
+        <div class="message">
+            <p>Happy 18th birthday to my amazing boyfriend! This little scavenger hunt is just a small way to show you how much I care about you. Even though we're far apart, my love for you knows no distance.</p>
+            <p>To start this adventure, enter our special date (MM/DD/YYYY) below:</p>
+        </div>
+        <div class="input-section">
+            <input type="text" id="stage1Input" placeholder="Enter the code...">
+            <button onclick="checkStage1()">Submit</button>
+        </div>
+        <p id="stage1Error" class="error-message">That's not quite right! Try again.</p>
+    </div>
+    
+    <!-- Stage 2: Cat Theme (Updated to be cuter, less preppy) -->
+    <div id="stage2" class="stage-2">
+        <h1>Purr-fect! You made it to stage 2!</h1>
+        <div class="cat-container">
+            <div class="cat">🐱</div>
+        </div>
+        <div class="paw-prints">
+            <div class="paw" style="--i: 1">🐾</div>
+            <div class="paw" style="--i: 2">🐾</div>
+            <div class="paw" style="--i: 3">🐾</div>
+            <div class="paw" style="--i: 4">🐾</div>
+            <div class="paw" style="--i: 5">🐾</div>
+        </div>
+        <div class="message">
+            <p>You know how much I love cats, and I know you do too! For this challenge, you need to think about someone special to me...</p>
+            <p>Click the link below to play a quick game, and then enter the name of my cat to continue.</p>
+        </div>
+        <a href="https://example.com/cat-game" target="_blank" class="note">Play the Cat Game</a>
+        <div class="input-section">
+            <input type="text" id="stage2Input" placeholder="Enter the code...">
+            <button onclick="checkStage2()">Submit</button>
+        </div>
+        <p id="stage2Error" class="error-message">That's not quite right! Try again.</p>
+        <div id="gift1" class="gift-link">
+            <p>You found your first gift!</p>
+            <a href="https://example.com/gift1" target="_blank" class="hidden-link">Click to claim Gift #1</a>
+        </div>
+        <button id="continueToStage3" onclick="goToStage3()" class="continue-button">Continue to Stage 3</button>
+    </div>
+    
+    <!-- Stage 3: Space Theme -->
+    <div id="stage3" class="stage-3">
+        <h1>Welcome to the Cosmos!</h1>
+        <div class="message">
+            <p>Let's venture into the universe of code. This program has a bug! Fix it to reveal your next step.</p>
+        </div>
+        <div class="code-container">
+            <pre>
+function message() {
+    var words = ["I", "l_ve", "y_u"];
+    return words.j_in(" ");
+}
+
+console.log(message());
+            </pre>
+        </div>
+        <div class="input-section">
+            <input type="text" id="stage3Input" placeholder="Enter the fixed output...">
+            <button onclick="checkStage3()">Submit</button>
+        </div>
+        <p id="stage3Error" class="error-message">That's not quite right! Try again.</p>
+        <div id="gift2" class="gift-link">
+            <p>Great coding skills! Here's your second gift:</p>
+            <a href="https://example.com/gift2" target="_blank" class="hidden-link">Click to claim Gift #2</a>
+        </div>
+        <button id="continueToStage4" onclick="goToStage4()" class="continue-button">Continue to Stage 4</button>
+    </div>
+    
+    <!-- Stage 4: Music Theme (EDM) - Code aspect removed -->
+    <div id="stage4" class="stage-4">
+        <h1>Music Mystery</h1>
+        
+        <!-- Audio visualizer effect -->
+        <div class="visualizer">
+            <div class="bar" style="--i: 1; --h: 40px;"></div>
+            <div class="bar" style="--i: 2; --h: 70px;"></div>
+            <div class="bar" style="--i: 3; --h: 30px;"></div>
+            <div class="bar" style="--i: 4; --h: 60px;"></div>
+            <div class="bar" style="--i: 5; --h: 80px;"></div>
+            <div class="bar" style="--i: 6; --h: 50px;"></div>
+            <div class="bar" style="--i: 7; --h: 70px;"></div>
+            <div class="bar" style="--i: 8; --h: 40px;"></div>
+            <div class="bar" style="--i: 9; --h: 60px;"></div>
+            <div class="bar" style="--i: 10; --h: 30px;"></div>
+            <div class="bar" style="--i: 11; --h: 50px;"></div>
+            <div class="bar" style="--i: 12; --h: 70px;"></div>
+        </div>
+        
+        <div class="message">
+            <p>Final challenge! What notes are missing from this melody? (Use uppercase letters)</p>
+        </div>
+        
+        <div class="music-staff">
+            <div class="staff-line"></div>
+            <div class="staff-line"></div>
+            <div class="staff-line"></div>
+            <div class="staff-line"></div>
+            <div class="staff-line"></div>
+            
+            <!-- Notes representation on staff -->
+            <div class="music-note" style="left: 20px; top: 38px;">C</div>
+            <div class="music-note" style="left: 70px; top: 28px;">E</div>
+            <div class="music-note" style="left: 120px; top: 23px;">?</div>
+            <div class="music-note" style="left: 170px; top: 33px;">?</div>
+            <div class="music-note" style="left: 220px; top: 18px;">G</div>
+        </div>
+        
+        <div class="input-section">
+            <input type="text" id="stage4Input1" placeholder="First missing note" style="width: 80px;">
+            <input type="text" id="stage4Input2" placeholder="Second missing note" style="width: 80px;">
+            <button onclick="checkStage4()">Submit</button>
+        </div>
+        <p id="stage4Error" class="error-message">That's not quite right! Try again.</p>
+        <div id="finalGift" class="gift-link">
+            <p>You completed all challenges! Here's your final gift:</p>
+            <a href="https://example.com/final-gift" target="_blank" class="hidden-link">Click for your special birthday surprise!</a>
+        </div>
+        <button id="continueToFinal" onclick="goToFinal()" class="continue-button">Finish</button>
+    </div>
+    
+    <!-- Final Stage -->
+    <div id="finalStage" class="final-stage">
+        <h1>Happy 18th Birthday, Kie!</h1>
+        <div class="heart" style="font-size: 100px;">❤️</div>
+        <div class="message">
+            <p>You've completed all the challenges! I hope this little adventure brought a smile to your face.</p>
+            <p>Distance may separate us physically, but nothing can keep our hearts apart.</p>
+            <p>I love you so much and can't wait until we can celebrate together in person!</p>
+        </div>
+    </div>
+
+    <script>
+        // Create stars for space theme
+        function createStars() {
+            const stage3 = document.getElementById('stage3');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random size between 1-3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                
+                stage3.appendChild(star);
+            }
+        }
+        
+        // Check Stage 1 (Anniversary date)
+        function checkStage1() {
+            const input = document.getElementById('stage1Input').value;
+            const errorMsg = document.getElementById('stage1Error');
+            
+            if (input === '10/12/2024') {
+                document.getElementById('stage1').style.display = 'none';
+                document.getElementById('stage2').style.display = 'flex';
+                errorMsg.style.display = 'none';
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+        
+        // Check Stage 2 (Cat name)
+        function checkStage2() {
+            const input = document.getElementById('stage2Input').value.toLowerCase();
+            const errorMsg = document.getElementById('stage2Error');
+            const gift1 = document.getElementById('gift1');
+            const continueBtn = document.getElementById('continueToStage3');
+            
+            if (input === 'kat' || input === 'katalina') {
+                gift1.style.display = 'block';
+                errorMsg.style.display = 'none';
+                
+                // Add event listener to the gift link that shows the continue button when clicked
+                const giftLink = gift1.querySelector('.hidden-link');
+                giftLink.addEventListener('click', function() {
+                    continueBtn.style.display = 'block';
+                });
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+        
+        // Go to Stage 3
+        function goToStage3() {
+            document.getElementById('stage2').style.display = 'none';
+            document.getElementById('stage3').style.display = 'flex';
+            createStars();
+        }
+        
+        // Check Stage 3 (Code fix)
+        function checkStage3() {
+            const input = document.getElementById('stage3Input').value.toLowerCase();
+            const errorMsg = document.getElementById('stage3Error');
+            const gift2 = document.getElementById('gift2');
+            const continueBtn = document.getElementById('continueToStage4');
+            
+            if (input === 'i love you') {
+                gift2.style.display = 'block';
+                errorMsg.style.display = 'none';
+                
+                // Add event listener to the gift link that shows the continue button when clicked
+                const giftLink = gift2.querySelector('.hidden-link');
+                giftLink.addEventListener('click', function() {
+                    continueBtn.style.display = 'block';
+                });
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+        
+        // Go to Stage 4
+        function goToStage4() {
+            document.getElementById('stage3').style.display = 'none';
+            document.getElementById('stage4').style.display = 'flex';
+        }
+        
+        // Check Stage 4 (Music notes)
+        function checkStage4() {
+            const input1 = document.getElementById('stage4Input1').value.toUpperCase();
+            const input2 = document.getElementById('stage4Input2').value.toUpperCase();
+            const errorMsg = document.getElementById('stage4Error');
+            const finalGift = document.getElementById('finalGift');
+            const continueBtn = document.getElementById('continueToFinal');
+            
+            if (input1 === 'F' && input2 === 'D') {
+                finalGift.style.display = 'block';
+                errorMsg.style.display = 'none';
+                
+                // Add event listener to the gift link that shows the continue button when clicked
+                const giftLink = finalGift.querySelector('.hidden-link');
+                giftLink.addEventListener('click', function() {
+                    continueBtn.style.display = 'block';
+                });
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+        
+        // Go to Final Stage
+        function goToFinal() {
+            document.getElementById('stage4').style.display = 'none';
+            document.getElementById('finalStage').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
